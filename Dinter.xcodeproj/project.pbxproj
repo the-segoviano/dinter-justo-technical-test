@@ -69,10 +69,9 @@
 		51E4CF1A26C820F000C1B0F3 /* Dinter */ = {
 			isa = PBXGroup;
 			children = (
+				C6C024F126C8274C006B5D60 /* App */,
+				C6C024F026C82736006B5D60 /* Delegates */,
 				C6C024ED26C826AD006B5D60 /* Supporting Files */,
-				51E4CF1B26C820F000C1B0F3 /* AppDelegate.swift */,
-				51E4CF1D26C820F000C1B0F3 /* SceneDelegate.swift */,
-				51E4CF1F26C820F000C1B0F3 /* ViewController.swift */,
 			);
 			path = Dinter;
 			sourceTree = "<group>";
@@ -94,6 +93,23 @@
 				51E4CF2426C820F200C1B0F3 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6C024F026C82736006B5D60 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				51E4CF1B26C820F000C1B0F3 /* AppDelegate.swift */,
+				51E4CF1D26C820F000C1B0F3 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		C6C024F126C8274C006B5D60 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				51E4CF1F26C820F000C1B0F3 /* ViewController.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
