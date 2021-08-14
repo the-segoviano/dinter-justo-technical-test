@@ -5,7 +5,7 @@
 *.swp
 profile
 
-
+*.xcuserstate
 
 ####
 # Xcode temporary files that should never be committed
