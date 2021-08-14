@@ -13,6 +13,7 @@
 		51E4CF2326C820F000C1B0F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E4CF2126C820F000C1B0F3 /* Main.storyboard */; };
 		51E4CF2526C820F200C1B0F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51E4CF2426C820F200C1B0F3 /* Assets.xcassets */; };
 		51E4CF2826C820F200C1B0F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E4CF2626C820F200C1B0F3 /* LaunchScreen.storyboard */; };
+		E300A45E8EF441522BAF7644 /* Pods_Dinter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF5B735C76A636682926138 /* Pods_Dinter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		51E4CF2426C820F200C1B0F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51E4CF2726C820F200C1B0F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51E4CF2926C820F200C1B0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FF5B735C76A636682926138 /* Pods_Dinter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dinter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CCF9B27094EE06FA35ACD8E /* Pods-Dinter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dinter.debug.xcconfig"; path = "Target Support Files/Pods-Dinter/Pods-Dinter.debug.xcconfig"; sourceTree = "<group>"; };
+		E06351F33308DAEBB6A9DB20 /* Pods-Dinter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dinter.release.xcconfig"; path = "Target Support Files/Pods-Dinter/Pods-Dinter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E300A45E8EF441522BAF7644 /* Pods_Dinter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40E292995071D247E9F9F5F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5FF5B735C76A636682926138 /* Pods_Dinter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		51E4CF0F26C820F000C1B0F3 = {
 			isa = PBXGroup;
 			children = (
 				51E4CF1A26C820F000C1B0F3 /* Dinter */,
 				51E4CF1926C820F000C1B0F3 /* Products */,
+				6685CE8260F2AFCD97BC644E /* Pods */,
+				40E292995071D247E9F9F5F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = Dinter;
 			sourceTree = "<group>";
 		};
+		6685CE8260F2AFCD97BC644E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8CCF9B27094EE06FA35ACD8E /* Pods-Dinter.debug.xcconfig */,
+				E06351F33308DAEBB6A9DB20 /* Pods-Dinter.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 51E4CF2C26C820F200C1B0F3 /* Build configuration list for PBXNativeTarget "Dinter" */;
 			buildPhases = (
+				1723499EFF3F1F256D32DBDC /* [CP] Check Pods Manifest.lock */,
 				51E4CF1426C820F000C1B0F3 /* Sources */,
 				51E4CF1526C820F000C1B0F3 /* Frameworks */,
 				51E4CF1626C820F000C1B0F3 /* Resources */,
@@ -131,6 +157,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1723499EFF3F1F256D32DBDC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dinter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		51E4CF1426C820F000C1B0F3 /* Sources */ = {
@@ -283,6 +334,7 @@
 		};
 		51E4CF2D26C820F200C1B0F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CCF9B27094EE06FA35ACD8E /* Pods-Dinter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -301,6 +353,7 @@
 		};
 		51E4CF2E26C820F200C1B0F3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E06351F33308DAEBB6A9DB20 /* Pods-Dinter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
