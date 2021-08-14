@@ -10,7 +10,6 @@
 		51E4CF1C26C820F000C1B0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4CF1B26C820F000C1B0F3 /* AppDelegate.swift */; };
 		51E4CF1E26C820F000C1B0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4CF1D26C820F000C1B0F3 /* SceneDelegate.swift */; };
 		51E4CF2026C820F000C1B0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4CF1F26C820F000C1B0F3 /* ViewController.swift */; };
-		51E4CF2326C820F000C1B0F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E4CF2126C820F000C1B0F3 /* Main.storyboard */; };
 		51E4CF2526C820F200C1B0F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51E4CF2426C820F200C1B0F3 /* Assets.xcassets */; };
 		51E4CF2826C820F200C1B0F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51E4CF2626C820F200C1B0F3 /* LaunchScreen.storyboard */; };
 		E300A45E8EF441522BAF7644 /* Pods_Dinter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF5B735C76A636682926138 /* Pods_Dinter.framework */; };
@@ -21,7 +20,6 @@
 		51E4CF1B26C820F000C1B0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51E4CF1D26C820F000C1B0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		51E4CF1F26C820F000C1B0F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		51E4CF2226C820F000C1B0F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51E4CF2426C820F200C1B0F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51E4CF2726C820F200C1B0F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51E4CF2926C820F200C1B0F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,13 +69,10 @@
 		51E4CF1A26C820F000C1B0F3 /* Dinter */ = {
 			isa = PBXGroup;
 			children = (
+				C6C024ED26C826AD006B5D60 /* Supporting Files */,
 				51E4CF1B26C820F000C1B0F3 /* AppDelegate.swift */,
 				51E4CF1D26C820F000C1B0F3 /* SceneDelegate.swift */,
 				51E4CF1F26C820F000C1B0F3 /* ViewController.swift */,
-				51E4CF2126C820F000C1B0F3 /* Main.storyboard */,
-				51E4CF2426C820F200C1B0F3 /* Assets.xcassets */,
-				51E4CF2626C820F200C1B0F3 /* LaunchScreen.storyboard */,
-				51E4CF2926C820F200C1B0F3 /* Info.plist */,
 			);
 			path = Dinter;
 			sourceTree = "<group>";
@@ -88,8 +83,17 @@
 				8CCF9B27094EE06FA35ACD8E /* Pods-Dinter.debug.xcconfig */,
 				E06351F33308DAEBB6A9DB20 /* Pods-Dinter.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C6C024ED26C826AD006B5D60 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				51E4CF2926C820F200C1B0F3 /* Info.plist */,
+				51E4CF2626C820F200C1B0F3 /* LaunchScreen.storyboard */,
+				51E4CF2426C820F200C1B0F3 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +156,6 @@
 			files = (
 				51E4CF2826C820F200C1B0F3 /* LaunchScreen.storyboard in Resources */,
 				51E4CF2526C820F200C1B0F3 /* Assets.xcassets in Resources */,
-				51E4CF2326C820F000C1B0F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,14 +200,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		51E4CF2126C820F000C1B0F3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				51E4CF2226C820F000C1B0F3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		51E4CF2626C820F200C1B0F3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -339,7 +334,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Dinter/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Dinter/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -347,7 +343,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lsegoviano.dev.Dinter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -358,7 +354,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Dinter/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Dinter/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -366,7 +363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lsegoviano.dev.Dinter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
