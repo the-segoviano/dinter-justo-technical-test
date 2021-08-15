@@ -6,5 +6,6 @@ target 'Dinter' do
   use_frameworks!
 
   # Pods for Dinter
+  pod "MDCSwipeToChoose"
 
 end
