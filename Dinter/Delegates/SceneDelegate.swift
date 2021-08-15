@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func setupInitialView(scene: UIWindowScene){
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = ViewController()
+        window?.rootViewController = HomeTabBarController()
         window?.makeKeyAndVisible()
     }
 

@@ -20,6 +20,9 @@
 		C6D6482026C96CE800B9CEE2 /* GothamRounded-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6D6481426C96CE800B9CEE2 /* GothamRounded-BoldItalic.otf */; };
 		C6D6482126C96CE800B9CEE2 /* GothamRounded-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6D6481526C96CE800B9CEE2 /* GothamRounded-MediumItalic.otf */; };
 		C6D6482326C96CE800B9CEE2 /* GothamRounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6D6481726C96CE800B9CEE2 /* GothamRounded-Medium.otf */; };
+		C6D6482B26C96F1800B9CEE2 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6482A26C96F1800B9CEE2 /* HomeTabBarController.swift */; };
+		C6D6482E26C96F4100B9CEE2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6482D26C96F4100B9CEE2 /* Helpers.swift */; };
+		C6D6483126C96F5100B9CEE2 /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6483026C96F5100B9CEE2 /* ProfileUserViewController.swift */; };
 		E300A45E8EF441522BAF7644 /* Pods_Dinter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF5B735C76A636682926138 /* Pods_Dinter.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 		C6D6481426C96CE800B9CEE2 /* GothamRounded-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamRounded-BoldItalic.otf"; sourceTree = "<group>"; };
 		C6D6481526C96CE800B9CEE2 /* GothamRounded-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamRounded-MediumItalic.otf"; sourceTree = "<group>"; };
 		C6D6481726C96CE800B9CEE2 /* GothamRounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GothamRounded-Medium.otf"; sourceTree = "<group>"; };
+		C6D6482A26C96F1800B9CEE2 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		C6D6482D26C96F4100B9CEE2 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		C6D6483026C96F5100B9CEE2 /* ProfileUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
 		E06351F33308DAEBB6A9DB20 /* Pods-Dinter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dinter.release.xcconfig"; path = "Target Support Files/Pods-Dinter/Pods-Dinter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				51E4CF1F26C820F000C1B0F3 /* ViewController.swift */,
+				C6D6482A26C96F1800B9CEE2 /* HomeTabBarController.swift */,
+				C6D6482D26C96F4100B9CEE2 /* Helpers.swift */,
+				C6D6483026C96F5100B9CEE2 /* ProfileUserViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -257,6 +266,9 @@
 			files = (
 				51E4CF2026C820F000C1B0F3 /* ViewController.swift in Sources */,
 				51E4CF1C26C820F000C1B0F3 /* AppDelegate.swift in Sources */,
+				C6D6482B26C96F1800B9CEE2 /* HomeTabBarController.swift in Sources */,
+				C6D6483126C96F5100B9CEE2 /* ProfileUserViewController.swift in Sources */,
+				C6D6482E26C96F4100B9CEE2 /* Helpers.swift in Sources */,
 				51E4CF1E26C820F000C1B0F3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

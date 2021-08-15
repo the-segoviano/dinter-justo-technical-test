@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
+//  ProfileUserViewController.swift
 //  Dinter
 //
-//  Created by Luis Segoviano on 14/08/21.
+//  Created by Luis Segoviano on 15/08/21.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ProfileUserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.font = CustomGothamRoundedFont.getRegularFont()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Home"
+        label.text = "Profile"
         label.textAlignment = .center
         self.view.addSubview(label)
         label.widthAnchor.constraint(equalToConstant: self.view.bounds.width).isActive = true
@@ -26,6 +26,4 @@ class ViewController: UIViewController {
         
     }
 
-
 }
-
