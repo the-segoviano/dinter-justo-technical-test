@@ -23,6 +23,15 @@ class ViewController: UIViewController {
         label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
+        
+        for family: String in UIFont.familyNames {
+            print(family)
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+        
     }
 
 
