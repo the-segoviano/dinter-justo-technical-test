@@ -24,6 +24,13 @@
 		C6D6482E26C96F4100B9CEE2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6482D26C96F4100B9CEE2 /* Helpers.swift */; };
 		C6D6483126C96F5100B9CEE2 /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6483026C96F5100B9CEE2 /* ProfileUserViewController.swift */; };
 		C6D6483A26C9753600B9CEE2 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6483926C9753600B9CEE2 /* UIColor+ext.swift */; };
+		C6D6483F26C9789300B9CEE2 /* RandomPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6483E26C9789300B9CEE2 /* RandomPerson.swift */; };
+		C6D6484426C98FCE00B9CEE2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6484326C98FCE00B9CEE2 /* Endpoint.swift */; };
+		C6D6484826C98FF600B9CEE2 /* RequestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6484726C98FF600B9CEE2 /* RequestErrors.swift */; };
+		C6D6484B26C9900A00B9CEE2 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6484A26C9900A00B9CEE2 /* ErrorHandler.swift */; };
+		C6D6484E26C9901D00B9CEE2 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6484D26C9901D00B9CEE2 /* HTTPMethod.swift */; };
+		C6D6485126C9903A00B9CEE2 /* HTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6485026C9903A00B9CEE2 /* HTTPRequestHandler.swift */; };
+		C6D6485426C9905300B9CEE2 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D6485326C9905300B9CEE2 /* RequestManager.swift */; };
 		E300A45E8EF441522BAF7644 /* Pods_Dinter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF5B735C76A636682926138 /* Pods_Dinter.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +56,13 @@
 		C6D6482D26C96F4100B9CEE2 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		C6D6483026C96F5100B9CEE2 /* ProfileUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
 		C6D6483926C9753600B9CEE2 /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
+		C6D6483E26C9789300B9CEE2 /* RandomPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPerson.swift; sourceTree = "<group>"; };
+		C6D6484326C98FCE00B9CEE2 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		C6D6484726C98FF600B9CEE2 /* RequestErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestErrors.swift; sourceTree = "<group>"; };
+		C6D6484A26C9900A00B9CEE2 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		C6D6484D26C9901D00B9CEE2 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		C6D6485026C9903A00B9CEE2 /* HTTPRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandler.swift; sourceTree = "<group>"; };
+		C6D6485326C9905300B9CEE2 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		E06351F33308DAEBB6A9DB20 /* Pods-Dinter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dinter.release.xcconfig"; path = "Target Support Files/Pods-Dinter/Pods-Dinter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +157,7 @@
 		C6D6480626C96CB000B9CEE2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C6D6483D26C9787300B9CEE2 /* Networking */,
 				C6D6483826C9752500B9CEE2 /* Extensions */,
 				C6D6480726C96CBA00B9CEE2 /* Font */,
 			);
@@ -170,6 +185,28 @@
 				C6D6483926C9753600B9CEE2 /* UIColor+ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C6D6483D26C9787300B9CEE2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C6D6484226C98FBA00B9CEE2 /* Models */,
+				C6D6484326C98FCE00B9CEE2 /* Endpoint.swift */,
+				C6D6484726C98FF600B9CEE2 /* RequestErrors.swift */,
+				C6D6484A26C9900A00B9CEE2 /* ErrorHandler.swift */,
+				C6D6484D26C9901D00B9CEE2 /* HTTPMethod.swift */,
+				C6D6485326C9905300B9CEE2 /* RequestManager.swift */,
+				C6D6485026C9903A00B9CEE2 /* HTTPRequestHandler.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C6D6484226C98FBA00B9CEE2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C6D6483E26C9789300B9CEE2 /* RandomPerson.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,12 +331,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				51E4CF2026C820F000C1B0F3 /* ViewController.swift in Sources */,
+				C6D6484426C98FCE00B9CEE2 /* Endpoint.swift in Sources */,
 				51E4CF1C26C820F000C1B0F3 /* AppDelegate.swift in Sources */,
 				C6D6482B26C96F1800B9CEE2 /* HomeTabBarController.swift in Sources */,
+				C6D6484B26C9900A00B9CEE2 /* ErrorHandler.swift in Sources */,
 				C6D6483126C96F5100B9CEE2 /* ProfileUserViewController.swift in Sources */,
 				C6D6482E26C96F4100B9CEE2 /* Helpers.swift in Sources */,
+				C6D6484826C98FF600B9CEE2 /* RequestErrors.swift in Sources */,
+				C6D6484E26C9901D00B9CEE2 /* HTTPMethod.swift in Sources */,
+				C6D6483F26C9789300B9CEE2 /* RandomPerson.swift in Sources */,
 				C6D6483A26C9753600B9CEE2 /* UIColor+ext.swift in Sources */,
+				C6D6485426C9905300B9CEE2 /* RequestManager.swift in Sources */,
 				51E4CF1E26C820F000C1B0F3 /* SceneDelegate.swift in Sources */,
+				C6D6485126C9903A00B9CEE2 /* HTTPRequestHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

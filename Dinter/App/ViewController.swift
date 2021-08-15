@@ -35,6 +35,24 @@ class ViewController: UIViewController {
         constructNopeButton()
         constructLikedButton()
         
+        
+        RequestManager.fetchRandomPerson(reference: self) { result in
+            switch result {
+            case .success(let personResponse):
+                DispatchQueue.main.async {
+                    
+                    print(" personResponse \(personResponse)")
+                    
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    print(" Error Found: ", error.localizedDescription)
+                }
+            }
+            
+        }
+        
+        
     }
 
     // MARK: - MDCSwipeToChoose
