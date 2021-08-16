@@ -10,7 +10,7 @@ import Foundation
 // MARK: - RandomPerson
 
 struct RandomPerson: Codable {
-    let results: [Resultado]
+    let results: [Persona]
     let info: Info
 }
 
@@ -22,7 +22,7 @@ struct Info: Codable {
 }
 
 // MARK: - Result
-struct Resultado: Codable {
+struct Persona: Codable {
     let gender: String
     let name: Name
     let location: Location
@@ -37,38 +37,38 @@ struct Resultado: Codable {
 
 // MARK: - Dob
 struct Dob: Codable {
-    let date: String
-    let age: Int
+    let date: String?
+    let age: Int?
 }
 
 // MARK: - ID
 struct IDRandomPerson: Codable {
-    let name, value: String
+    let name, value: String?
 }
 
 // MARK: - Location
 struct Location: Codable {
     let street: Street
     let city, state, country: String
-    let postcode: Int
-    let coordinates: Coordinates
-    let timezone: Timezone
+    //let postcode: Int?
+    let coordinates: Coordinates?
+    let timezone: Timezone?
 }
 
 // MARK: - Coordinates
 struct Coordinates: Codable {
-    let latitude, longitude: String
+    let latitude, longitude: String?
 }
 
 // MARK: - Street
 struct Street: Codable {
-    let number: Int
-    let name: String
+    let number: Int?
+    let name: String?
 }
 
 // MARK: - Timezone
 struct Timezone: Codable {
-    let offset, description: String
+    let offset, description: String?
 }
 
 // MARK: - Login
@@ -79,10 +79,10 @@ struct Login: Codable {
 
 // MARK: - Name
 struct Name: Codable {
-    let title, first, last: String
+    let title, first, last: String?
 }
 
 // MARK: - Picture
 struct Picture: Codable {
-    let large, medium, thumbnail: String
+    let large, medium, thumbnail: String?
 }

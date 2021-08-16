@@ -17,7 +17,7 @@ private extension URL {
 
 
 enum Endpoint {
-    case person
+    case person(number: Int)
 }
 
 
@@ -26,12 +26,11 @@ extension Endpoint {
     var url: URL {
         switch self {
         
-        case .person:
-            return .makeForEndpoint("api/")
+        case .person(let number):
+            return .makeForEndpoint("api/?results=\(number)")
             
         }
     }
-    
 }
 
 

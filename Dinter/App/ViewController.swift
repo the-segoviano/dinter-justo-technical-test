@@ -12,16 +12,67 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
         
-        self.people = defaultPeople()
+        fetchInitialRandomPersons()
         
-        print(" self.people ", self.people.count, "\n\n")
-        
+    }
+    
+    
+    private func fetchInitialRandomPersons(){
+        RequestManager.fetchRandomPerson(reference: self, withNumber: 10) { [weak self] result in
+            guard let reference = self else {
+                return
+            }
+            switch result {
+            case .success(let personsResponse):
+                DispatchQueue.main.async {
+                    
+                    reference.people.append(contentsOf: personsResponse.results)
+                    if reference.people.count > 0 {
+                        reference.setupTinderView()
+                    }
+                    
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    print(" Error Found: 1 ", error.localizedDescription)
+                }
+            }
+        }
+    } // [END] fetchInitialRandomPersons
+    
+    
+    private func fetchRandomPerson(){
+        RequestManager.fetchRandomPerson(reference: self) { [weak self] result in
+            guard let reference = self else {
+                return
+            }
+            switch result {
+            case .success(let personResponse):
+                DispatchQueue.main.async {
+                    
+                    if let newPerson = personResponse.results.first {
+                        reference.people.append(newPerson)
+                    }
+                    
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    print(" Error Found: ", error.localizedDescription)
+                }
+            }
+        }
+    } // [END] fetchRandomPerson
+    
+    
+    private func setupTinderView(){
         // Display the first ChoosePersonView in front. Users can swipe to indicate
         // whether they like or dislike the person displayed.
         self.setMyFrontCardView(frontCardView: self.popPersonViewWithFrame(frame: frontCardViewFrame())!)
         
         self.view.addSubview(self.frontCardView)
+        
         
         // Display the second ChoosePersonView in back. This view controller uses
         // the MDCSwipeToChooseDelegate protocol methods to update the front and
@@ -34,33 +85,16 @@ class ViewController: UIViewController {
         // See the `nopeFrontCardView` and `likeFrontCardView` methods.
         constructNopeButton()
         constructLikedButton()
-        
-        
-        RequestManager.fetchRandomPerson(reference: self) { result in
-            switch result {
-            case .success(let personResponse):
-                DispatchQueue.main.async {
-                    
-                    print(" personResponse \(personResponse)")
-                    
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    print(" Error Found: ", error.localizedDescription)
-                }
-            }
-            
-        }
-        
-        
     }
+    
 
     // MARK: - MDCSwipeToChoose
     
-    var people:[Person] = []
+    // var people:[Person] = []
+    var people:[Persona] = [Persona]()
     let ChoosePersonButtonHorizontalPadding:CGFloat = 80.0
     let ChoosePersonButtonVerticalPadding:CGFloat = 20.0
-    var currentPerson: Person!
+    var currentPerson: Persona!
     var frontCardView: ChoosePersonView!
     var backCardView: ChoosePersonView!
 
@@ -74,22 +108,23 @@ extension ViewController: MDCSwipeToChooseDelegate {
     
     
     // This is called when a user didn't fully swipe left or right.
-    func viewDidCancelSwipe(_ view: UIView) -> Void{
+    func viewDidCancelSwipe(_ view: UIView) -> Void {
         
-        print("You couldn't decide on \(self.currentPerson.Name)");
+        // print("You couldn't decide on \(self.currentPerson.Name)");
+        print("You couldn't decide on \(self.currentPerson.name.first)");
     }
     
     // This is called then a user swipes the view fully left or right.
-    func view(_ view: UIView, wasChosenWith wasChosenWithDirection: MDCSwipeDirection) -> Void{
+    func view(_ view: UIView, wasChosenWith wasChosenWithDirection: MDCSwipeDirection) -> Void {
         
         // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
         // and "LIKED" on swipes to the right.
-        if(wasChosenWithDirection == MDCSwipeDirection.left){
-            print("You noped: \(self.currentPerson.Name)")
+        if(wasChosenWithDirection == MDCSwipeDirection.left) {
+            print("You noped: \(self.currentPerson.name.first)")
         }
         else{
             
-            print("You liked: \(self.currentPerson.Name)")
+            print("You liked: \(self.currentPerson.name.first)")
         }
         
         // MDCSwipeToChooseView removes the view from the view hierarchy
@@ -110,6 +145,9 @@ extension ViewController: MDCSwipeToChooseDelegate {
                 self.backCardView.alpha = 1.0
                 },completion:nil)
         }
+        
+        self.fetchRandomPerson()
+        
     }
     func setMyFrontCardView(frontCardView:ChoosePersonView) -> Void{
         
@@ -119,7 +157,7 @@ extension ViewController: MDCSwipeToChooseDelegate {
         self.currentPerson = frontCardView.person
     }
     
-    func defaultPeople() -> [Person] {
+    /*func defaultPeople() -> [Person] {
         // It would be trivial to download these from a web service
         // as needed, but for the purposes of this sample app we'll
         // simply store them in memory.
@@ -132,7 +170,7 @@ extension ViewController: MDCSwipeToChooseDelegate {
             Person(name: "Otra", image: UIImage(named: "image-2"), age: 21, sharedFriends: 3, sharedInterest: 4, photos: 5),
             Person(name: "gc", image: UIImage(named: "image-3"), age: 21, sharedFriends: 3, sharedInterest: 4, photos: 5),
         ]
-    }
+    }*/
     
     func popPersonViewWithFrame(frame:CGRect) -> ChoosePersonView? {
         if(self.people.count == 0){
@@ -160,32 +198,35 @@ extension ViewController: MDCSwipeToChooseDelegate {
         // Create a personView with the top person in the people array, then pop
         // that person off the stack.
         
-        let personView:ChoosePersonView = ChoosePersonView(frame: frame, person: self.people[0], options: options)
+        let personView:ChoosePersonView = ChoosePersonView(frame: frame,
+                                                           person: self.people[0],
+                                                           options: options)
         self.people.remove(at: 0)
         return personView
         
     }
-    func frontCardViewFrame() -> CGRect{
+    
+    func frontCardViewFrame() -> CGRect {
         let horizontalPadding:CGFloat = 20.0
-        let topPadding:CGFloat = 60.0
-        let bottomPadding:CGFloat = 200.0
+        let topPadding:CGFloat = 80.0 // 60
+        let bottomPadding:CGFloat = 260.0 // 200
         
-        return CGRect(x: horizontalPadding,
-                      y: topPadding,
+        return CGRect(x: horizontalPadding, y: topPadding,
                       width: self.view.frame.width - (horizontalPadding * 2),
                       height: self.view.frame.height - bottomPadding)
     }
     
+    
     func backCardViewFrame() ->CGRect{
         let frontFrame:CGRect = frontCardViewFrame()
-        
         return CGRect(x: frontFrame.origin.x,
                       y: frontFrame.origin.y + 10.0,
                       width: frontFrame.width,
                       height: frontFrame.height)
     }
     
-    func constructNopeButton() -> Void{
+    
+    func constructNopeButton() -> Void {
         let button:UIButton =  UIButton(type: UIButton.ButtonType.system)
         let image:UIImage = UIImage(named:"nope")!
         
@@ -193,13 +234,12 @@ extension ViewController: MDCSwipeToChooseDelegate {
                               y: self.frontCardView.frame.maxY + ChoosePersonButtonVerticalPadding,
                               width: image.size.width,
                               height: image.size.height)
-        
         button.setImage(image, for: .normal)
-        
         button.tintColor = UIColor(red: 247.0/255.0, green: 91.0/255.0, blue: 37.0/255.0, alpha: 1.0)
         button.addTarget(self, action: #selector(nopeFrontCardView), for: .touchUpInside)
         self.view.addSubview(button)
     }
+    
     
     func constructLikedButton() -> Void {
         let button:UIButton = UIButton(type: .system)
@@ -212,46 +252,25 @@ extension ViewController: MDCSwipeToChooseDelegate {
         
         button.setImage(image, for: .normal)
         button.tintColor = UIColor(red: 29.0/255.0, green: 245.0/255.0, blue: 106.0/255.0, alpha: 1.0)
-        // button.addTarget(self, action: "likeFrontCardView", forControlEvents: UIControl.Event.touchUpInside)
         button.addTarget(self, action: #selector(likeFrontCardView), for: .touchUpInside)
         
         self.view.addSubview(button)
-        
     }
     
-    @objc func nopeFrontCardView() -> Void{
+    
+    @objc func nopeFrontCardView() -> Void {
         self.frontCardView.mdc_swipe(MDCSwipeDirection.left)
     }
     
-    @objc func likeFrontCardView() -> Void{
+    
+    @objc func likeFrontCardView() -> Void {
         self.frontCardView.mdc_swipe(MDCSwipeDirection.right)
     }
     
 }
 
 
-class Person: NSObject {
-    
-    let Name: NSString
-    let Image: UIImage!
-    let Age: NSNumber
-    let NumberOfSharedFriends: NSNumber?
-    let NumberOfSharedInterests: NSNumber
-    let NumberOfPhotos: NSNumber
-    
-    override var description: String {
-        return "Name: \(Name), \n Image: \(Image), \n Age: \(Age) \n NumberOfSharedFriends: \(NumberOfSharedFriends) \n NumberOfSharedInterests: \(NumberOfSharedInterests) \n NumberOfPhotos/: \(NumberOfPhotos)"
-    }
-    
-    init(name: NSString?, image: UIImage?, age: NSNumber?, sharedFriends: NSNumber?, sharedInterest: NSNumber?, photos:NSNumber?) {
-        self.Name = name ?? ""
-        self.Image = image
-        self.Age = age ?? 0
-        self.NumberOfSharedFriends = sharedFriends ?? 0
-        self.NumberOfSharedInterests = sharedInterest ?? 0
-        self.NumberOfPhotos = photos ?? 0
-    }
-}
+
 
 class ImagelabelView: UIView{
     var imageView: UIImageView!
@@ -261,10 +280,11 @@ class ImagelabelView: UIView{
         super.init(frame: frame)
         imageView = UIImageView()
         label = UILabel()
+        label.font = CustomGothamRoundedFont.getLightFont()
     }
 
-    init(frame: CGRect, image: UIImage, text: String) {
-        
+    init(frame: CGRect, image: UIImage, text: String)
+    {
         super.init(frame: frame)
         constructImageView(image: image)
         constructLabel(text: text)
@@ -293,6 +313,8 @@ class ImagelabelView: UIView{
                             height: height)
         self.label = UILabel(frame: frame2)
         label.text = text
+        label.textAlignment = .center
+        
         addSubview(label)
         
     }
@@ -301,21 +323,24 @@ class ImagelabelView: UIView{
 
 class ChoosePersonView: MDCSwipeToChooseView {
     
-    let ChoosePersonViewImageLabelWidth:CGFloat = 42.0;
-    var person: Person!
+    let ChoosePersonViewImageLabelWidth:CGFloat = 60.0;
+    var person: Persona!
     var informationView: UIView!
     var nameLabel: UILabel!
     var carmeraImageLabelView:ImagelabelView!
     var interestsImageLabelView: ImagelabelView!
     var friendsImageLabelView: ImagelabelView!
     
-    init(frame: CGRect, person: Person, options: MDCSwipeToChooseViewOptions) {
+    init(frame: CGRect, person: Persona, options: MDCSwipeToChooseViewOptions) {
         
         super.init(frame: frame, options: options)
         self.person = person
         
-        if let image = self.person.Image {
-            self.imageView.image = image
+        if let image = person.picture.large {
+            self.imageView?.setImageFor(url: URL(string: image)!) { image in
+                self.imageView?.image = image
+                self.setNeedsLayout()
+            }
         }
         
         self.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
@@ -353,38 +378,54 @@ class ChoosePersonView: MDCSwipeToChooseView {
                                    width: floor(self.informationView.frame.width/2),
                                    height: self.informationView.frame.height - topPadding)
         self.nameLabel = UILabel(frame:frame)
-        self.nameLabel.text = "\(person.Name), \(person.Age)"
-        self.informationView .addSubview(self.nameLabel)
+        self.nameLabel.font = CustomGothamRoundedFont.getBoldFont()
+        
+        if let firstName = person.name.first, let age = person.dob.age {
+            self.nameLabel.text = "\(firstName), \(age)"
+        }
+        
+        self.informationView.addSubview(self.nameLabel)
     }
     func constructCameraImageLabelView() -> Void {
-        var rightPadding:CGFloat = 10.0
+        //var rightPadding:CGFloat = 10.0
         let image:UIImage = UIImage(named:"camera")!
-        self.carmeraImageLabelView = buildImageLabelViewLeftOf(x: self.informationView.bounds.width, image:image, text:person.NumberOfPhotos.stringValue)
+        
+        let randomInt = Int.random(in: 1..<999)
+        self.carmeraImageLabelView = buildImageLabelViewLeftOf(x: self.informationView.bounds.width,
+                                                               image:image,
+                                                               text: "\(randomInt)")
         self.informationView.addSubview(self.carmeraImageLabelView)
     }
     
     func constructInterestsImageLabelView() -> Void {
         let image: UIImage = UIImage(named: "book")!
-        self.interestsImageLabelView = self.buildImageLabelViewLeftOf(x: self.carmeraImageLabelView.frame.minX, image: image, text:person.NumberOfPhotos.stringValue)
+        // person.NumberOfPhotos.stringValue
+        let randomInt = Int.random(in: 1..<9)
+        self.interestsImageLabelView = self.buildImageLabelViewLeftOf(x: self.carmeraImageLabelView.frame.minX,
+                                                                      image: image,
+                                                                      text: "\(randomInt)")
         self.informationView.addSubview(self.interestsImageLabelView)
     }
     
     func constructFriendsImageLabelView() -> Void {
         let image:UIImage = UIImage(named:"group")!
+        let sentimentalSituation = ["Taken", "Married", "Single"]
+        let status = sentimentalSituation.randomElement() ?? "No Situation"
         
-        self.friendsImageLabelView = buildImageLabelViewLeftOf(x: self.interestsImageLabelView.frame.minX, image:image, text:"No Friends")
+        self.friendsImageLabelView = buildImageLabelViewLeftOf(x: self.interestsImageLabelView.frame.minX,
+                                                               image:image,
+                                                               text: status)
         
         self.informationView.addSubview(self.friendsImageLabelView)
     }
     
     func buildImageLabelViewLeftOf(x:CGFloat, image:UIImage, text:String) -> ImagelabelView{
-        let frame:CGRect = CGRect(x:x-ChoosePersonViewImageLabelWidth, y: 0,
-            width: ChoosePersonViewImageLabelWidth,
-            height: self.informationView.bounds.height)
+        let frame:CGRect = CGRect(x:x-ChoosePersonViewImageLabelWidth,
+                                  y: 0,
+                                  width: ChoosePersonViewImageLabelWidth,
+                                  height: self.informationView.bounds.height)
         let view:ImagelabelView = ImagelabelView(frame:frame, image:image, text:text)
-        
         view.autoresizingMask = .flexibleLeftMargin //UIViewAutoresizing.FlexibleLeftMargin
-        
         return view
     }
 }

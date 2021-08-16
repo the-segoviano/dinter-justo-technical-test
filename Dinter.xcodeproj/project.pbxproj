@@ -146,10 +146,10 @@
 		C6C024F126C8274C006B5D60 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				51E4CF1F26C820F000C1B0F3 /* ViewController.swift */,
 				C6D6482A26C96F1800B9CEE2 /* HomeTabBarController.swift */,
-				C6D6482D26C96F4100B9CEE2 /* Helpers.swift */,
+				51E4CF1F26C820F000C1B0F3 /* ViewController.swift */,
 				C6D6483026C96F5100B9CEE2 /* ProfileUserViewController.swift */,
+				C6D6482D26C96F4100B9CEE2 /* Helpers.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";

@@ -27,11 +27,11 @@ class HomeTabBarController: UITabBarController {
         profileViewController.tabBarItem.image = UIImage(named: "profile")
         
         
-        let navViewController = UINavigationController(rootViewController: startViewController)
+        // let navViewController = UINavigationController(rootViewController: )
         
         let profileNavViewController = UINavigationController(rootViewController: profileViewController)
         
-        viewControllers = [navViewController, profileNavViewController]
+        viewControllers = [startViewController, profileNavViewController]
     }
     
     

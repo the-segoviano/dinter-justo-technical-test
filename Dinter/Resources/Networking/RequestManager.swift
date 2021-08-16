@@ -5,14 +5,15 @@
 //  Created by Luis Segoviano on 15/08/21.
 //
 
-import Foundation
+import UIKit
 
 class RequestManager {
     
     class func fetchRandomPerson(reference: UIViewController,
-                                  completion: @escaping (Result<RandomPerson, Error>) -> ()
+                                 withNumber number: Int = 1,
+                                 completion: @escaping (Result<RandomPerson, Error>) -> ()
     ){
-        HTTPRequestHandler.sharedInstance.fetchDataRequest(url: Endpoint.person.url,
+        HTTPRequestHandler.sharedInstance.fetchDataRequest(url: Endpoint.person(number: number).url,
                                                            method: HTTPMethod.GET,
                                                            reference: reference)
         { result in

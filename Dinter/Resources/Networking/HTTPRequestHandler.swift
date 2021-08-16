@@ -5,7 +5,7 @@
 //  Created by Luis Segoviano on 15/08/21.
 //
 
-import Foundation
+import UIKit
 
 
 /*
@@ -65,6 +65,17 @@ final class HTTPRequestHandler {
                 return
             }
             if let data = data {
+
+                /**
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        print("\n json ", json, "\n")
+                    }
+                } catch let error as NSError {
+                    print("Failed to load: \(error.localizedDescription)")
+                }
+                */
+                
                 completion(.success(data))
             }
         }
