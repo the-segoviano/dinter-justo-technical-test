@@ -28,10 +28,9 @@ class HomeTabBarController: UITabBarController {
         
         
         // let navViewController = UINavigationController(rootViewController: )
+        //let profileNavViewController = UINavigationController(rootViewController: profileViewController)
         
-        let profileNavViewController = UINavigationController(rootViewController: profileViewController)
-        
-        viewControllers = [startViewController, profileNavViewController]
+        viewControllers = [startViewController, profileViewController]
     }
     
     

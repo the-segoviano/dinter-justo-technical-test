@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.mercury
         
         fetchInitialRandomPersons()
         
@@ -36,7 +36,8 @@ class ViewController: UIViewController {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    print(" Error Found: 1 ", error.localizedDescription)
+                    Alert.showErrorRequestAlert(on: reference,
+                                                withMessage: error.localizedDescription)
                 }
             }
         }
@@ -59,7 +60,8 @@ class ViewController: UIViewController {
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    print(" Error Found: ", error.localizedDescription)
+                    Alert.showErrorRequestAlert(on: reference,
+                                                withMessage: error.localizedDescription)
                 }
             }
         }
@@ -109,9 +111,7 @@ extension ViewController: MDCSwipeToChooseDelegate {
     
     // This is called when a user didn't fully swipe left or right.
     func viewDidCancelSwipe(_ view: UIView) -> Void {
-        
-        // print("You couldn't decide on \(self.currentPerson.Name)");
-        print("You couldn't decide on \(self.currentPerson.name.first)");
+        // print("You couldn't decide on \(self.currentPerson.name.first)");
     }
     
     // This is called then a user swipes the view fully left or right.
@@ -120,11 +120,10 @@ extension ViewController: MDCSwipeToChooseDelegate {
         // MDCSwipeToChooseView shows "NOPE" on swipes to the left,
         // and "LIKED" on swipes to the right.
         if(wasChosenWithDirection == MDCSwipeDirection.left) {
-            print("You noped: \(self.currentPerson.name.first)")
+            // print("You noped: \(self.currentPerson.name.first)")
         }
         else{
-            
-            print("You liked: \(self.currentPerson.name.first)")
+            // print("You liked: \(self.currentPerson.name.first)")
         }
         
         // MDCSwipeToChooseView removes the view from the view hierarchy

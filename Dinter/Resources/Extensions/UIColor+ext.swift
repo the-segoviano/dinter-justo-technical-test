@@ -11,6 +11,8 @@ extension UIColor {
     
     static let greenCustomized = ParseColor.hexStringToUIColor(hex: "#21b384")
     
+    static let mercury = ParseColor.hexStringToUIColor(hex: "#f3f3f3")
+    
 }
 
 class ParseColor {

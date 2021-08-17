@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5112CD3B26CB2D84009A2B39 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5112CD3A26CB2D84009A2B39 /* Alert.swift */; };
 		51E4CF1C26C820F000C1B0F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4CF1B26C820F000C1B0F3 /* AppDelegate.swift */; };
 		51E4CF1E26C820F000C1B0F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4CF1D26C820F000C1B0F3 /* SceneDelegate.swift */; };
 		51E4CF2026C820F000C1B0F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4CF1F26C820F000C1B0F3 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5112CD3A26CB2D84009A2B39 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		51E4CF1826C820F000C1B0F3 /* Dinter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51E4CF1B26C820F000C1B0F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51E4CF1D26C820F000C1B0F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,15 @@
 				5FF5B735C76A636682926138 /* Pods_Dinter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5112CD3926CB2D78009A2B39 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C6D6482D26C96F4100B9CEE2 /* Helpers.swift */,
+				5112CD3A26CB2D84009A2B39 /* Alert.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		51E4CF0F26C820F000C1B0F3 = {
@@ -149,7 +160,6 @@
 				C6D6482A26C96F1800B9CEE2 /* HomeTabBarController.swift */,
 				51E4CF1F26C820F000C1B0F3 /* ViewController.swift */,
 				C6D6483026C96F5100B9CEE2 /* ProfileUserViewController.swift */,
-				C6D6482D26C96F4100B9CEE2 /* Helpers.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -157,6 +167,7 @@
 		C6D6480626C96CB000B9CEE2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5112CD3926CB2D78009A2B39 /* Utils */,
 				C6D6483D26C9787300B9CEE2 /* Networking */,
 				C6D6483826C9752500B9CEE2 /* Extensions */,
 				C6D6480726C96CBA00B9CEE2 /* Font */,
@@ -333,6 +344,7 @@
 				51E4CF2026C820F000C1B0F3 /* ViewController.swift in Sources */,
 				C6D6484426C98FCE00B9CEE2 /* Endpoint.swift in Sources */,
 				51E4CF1C26C820F000C1B0F3 /* AppDelegate.swift in Sources */,
+				5112CD3B26CB2D84009A2B39 /* Alert.swift in Sources */,
 				C6D6482B26C96F1800B9CEE2 /* HomeTabBarController.swift in Sources */,
 				C6D6484B26C9900A00B9CEE2 /* ErrorHandler.swift in Sources */,
 				C6D6483126C96F5100B9CEE2 /* ProfileUserViewController.swift in Sources */,
