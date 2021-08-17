@@ -9,11 +9,13 @@ import UIKit
 
 
 enum ProfileSections: CaseIterable {
-    case description, location
+    case name, birthday, email, phoneNumber, address
 }
 
 
 class ProfileUserViewController: UIViewController {
+    
+    var person: Persona?
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped)
@@ -25,6 +27,7 @@ class ProfileUserViewController: UIViewController {
         tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: "BaseTableViewCell")
         tableView.register(AvatarCell.self, forCellReuseIdentifier: "AvatarCell")
         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
+        tableView.register(InfoProfileUserCell.self, forCellReuseIdentifier: "InfoProfileUserCell")
         tableView.separatorStyle = .none
         tableView.alwaysBounceVertical = true
         tableView.layer.cornerRadius = 15
@@ -34,13 +37,9 @@ class ProfileUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = .mercury
         
-        setupTableView()
-        
         fetchRandomPerson()
-        
     }
     
     
@@ -63,11 +62,11 @@ class ProfileUserViewController: UIViewController {
             switch result {
             case .success(let personResponse):
                 DispatchQueue.main.async {
-                    
                     if let newPerson = personResponse.results.first {
-                        print(" newPerson ", newPerson, "\n")
+                        reference.setupTableView()
+                        reference.person = newPerson
+                        reference.tableView.reloadData()
                     }
-                    
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -95,20 +94,80 @@ extension ProfileUserViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(" indexPath.section ", indexPath.section)
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AvatarCell", for: indexPath)
             if let cell = cell as? AvatarCell {
-                cell.setUpView(urlImage: "https://i.pinimg.com/originals/6a/9b/37/6a9b370bc7ea40db36b282c0ec9a6f6e.jpg")
-                return cell
+                if let person = person {
+                    cell.setUpView(person: person)
+                    return cell
+                }
             }
         }
         
         if indexPath.section == 1 {
-            let section = ProfileSections.allCases[indexPath.row]
+            let sectionProfile = ProfileSections.allCases[indexPath.row]
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            return cell
+            if sectionProfile == .name{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "InfoProfileUserCell", for: indexPath)
+                if let cell = cell as? InfoProfileUserCell {
+                    if let person = person {
+                        let fullName = "\(person.name.first!) \(person.name.last!)"
+                        cell.setUpView(withInfo: fullName)
+                        cell.info.font = CustomGothamRoundedFont.getBoldFont()
+                        return cell
+                    }
+                }
+            }
+            
+            if sectionProfile == .birthday {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "InfoProfileUserCell", for: indexPath)
+                if let cell = cell as? InfoProfileUserCell {
+                    if let person = person {
+                        if let currentDate: Date = person.dob.date.toDate(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ") {
+                            let dateFormat = DateFormatter()
+                            dateFormat.dateFormat = "EEEE dd MMMM, yyyy"
+                            dateFormat.locale = Locale(identifier: "es_MX")
+                            dateFormat.timeZone = TimeZone(identifier: "UTC")! //TimeZone.current
+                            let date = dateFormat.string(from: currentDate)
+                            let birthday = "\(person.dob.age), \(date) "
+                            cell.setUpView(withInfo: birthday)
+                            return cell
+                        }
+                    }
+                }
+            }
+            
+            if sectionProfile == .email {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "InfoProfileUserCell", for: indexPath)
+                if let cell = cell as? InfoProfileUserCell {
+                    if let person = person {
+                        cell.setUpView(withInfo: person.email)
+                        return cell
+                    }
+                }
+            }
+            
+            if sectionProfile == .phoneNumber {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "InfoProfileUserCell", for: indexPath)
+                if let cell = cell as? InfoProfileUserCell {
+                    if let person = person {
+                        cell.setUpView(withInfo: "cel. \(person.phone)")
+                        return cell
+                    }
+                }
+            }
+            
+            
+            if sectionProfile == .address {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "InfoProfileUserCell", for: indexPath)
+                if let cell = cell as? InfoProfileUserCell {
+                    if let person = person {
+                        let fullAddress = "\(person.location.street.name), \(person.location.city), \(person.location.country)"
+                        cell.setUpView(withInfo: fullAddress)
+                        return cell
+                    }
+                }
+            }
             
         }
         
@@ -127,7 +186,7 @@ extension ProfileUserViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
         if indexPath.section == 1 {
-            let section = ProfileSections.allCases[indexPath.row]
+            return 45
         }
         
         return UITableView.automaticDimension

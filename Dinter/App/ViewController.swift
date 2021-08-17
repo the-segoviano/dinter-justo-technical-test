@@ -379,8 +379,8 @@ class ChoosePersonView: MDCSwipeToChooseView {
         self.nameLabel = UILabel(frame:frame)
         self.nameLabel.font = CustomGothamRoundedFont.getBoldFont()
         
-        if let firstName = person.name.first, let age = person.dob.age {
-            self.nameLabel.text = "\(firstName), \(age)"
+        if let firstName = person.name.first {
+            self.nameLabel.text = "\(firstName), \(person.dob.age)"
         }
         
         self.informationView.addSubview(self.nameLabel)

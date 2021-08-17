@@ -37,8 +37,8 @@ struct Persona: Codable {
 
 // MARK: - Dob
 struct Dob: Codable {
-    let date: String?
-    let age: Int?
+    let date: String
+    let age: Int
 }
 
 // MARK: - ID
@@ -62,8 +62,8 @@ struct Coordinates: Codable {
 
 // MARK: - Street
 struct Street: Codable {
-    let number: Int?
-    let name: String?
+    let number: Int
+    let name: String
 }
 
 // MARK: - Timezone

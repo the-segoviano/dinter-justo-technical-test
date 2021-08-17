@@ -43,8 +43,7 @@ final class HTTPRequestHandler {
                           paramsBody: [String: Any] = [:],
                           reference viewController: UIViewController,
                           completion: @escaping (Result<Data, Error>) -> ()) {
-        print(" url ", url)
-        
+        // print(" url ", url)
         var request: URLRequest  = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.timeoutInterval = timeOut
@@ -65,17 +64,6 @@ final class HTTPRequestHandler {
                 return
             }
             if let data = data {
-
-                /**
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("\n json ", json, "\n")
-                    }
-                } catch let error as NSError {
-                    print("Failed to load: \(error.localizedDescription)")
-                }
-                */
-                
                 completion(.success(data))
             }
         }
